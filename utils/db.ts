@@ -1,15 +1,20 @@
 import mongoose from "mongoose";
-require('dotenv').config();
-const dbURL:string=process.env.DB_URL || '';
-const connectDB=async ()=>{
-try {
-    await mongoose.connect(dbURL).then((data:any)=>{
-        console.log(`DB is connected:${data.connection.host}`);
+import dotenv from 'dotenv';
 
-    })
-} catch (error:any) {
-    console.log(error.message)
-    setTimeout(connectDB,5000)
-}
-}
-export default connectDB
+dotenv.config();
+
+const dbURL: string ='mongodb+srv://zubairrr:mhjk1234@lms.pxjdfaj.mongodb.net/';
+
+const connectDB = async () => {
+  try {
+    const connection = await mongoose.connect(dbURL,{
+        dbName: "lms", 
+    });
+    console.log(`DB is connected: ${connection.connection.host}`);
+  } catch (error: any) {
+    console.error(`Error connecting to the database: ${error.message}`);
+    setTimeout(connectDB, 5000); // Retry connection after 5 seconds
+  }
+};
+
+export default connectDB;

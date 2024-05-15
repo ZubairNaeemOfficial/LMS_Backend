@@ -13,7 +13,7 @@ export interface IUSER extends Document{
     };
     role:string;
     isVerified:boolean;
-    courses:Array<{course_is:string}>;
+    courses:Array<{courseId:string}>;
     comparePassword:(password:string)=>Promise<boolean>
 
 }

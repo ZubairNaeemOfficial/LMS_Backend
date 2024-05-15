@@ -1,6 +1,9 @@
 require("dotenv").config();
-import { IUSER } from "../models/user.model";
+import { NextFunction, Request, Response } from "express";
 import jwt, { Secret } from "jsonwebtoken";
+import ErrorHandler from "../utils/ErrorHandler";
+import userModal, { IUSER } from "../models/user.model";
+import { CatchAsyncError } from "../middleware/catchAsyncErrors";
 
 interface IActivationToken {
   token: string;
